@@ -1,0 +1,52 @@
+*{
+	font-family: "Open Sans"
+}
+
+.table_data{
+	font-size:20px;
+	color:gray;
+	cursor: pointer;
+}
+
+/*.table_data:hover {
+	background: #2C7BE5;
+	color:white;
+	cursor: pointer;
+}*/
+.table_data:active, .focus {
+	
+
+}
+.table_Header{
+	font-size:20px;
+	color:gray;
+	background: white	
+}
+.modal_header{
+	font-size: 20px;
+	padding:10px;
+	margin-top: 10px;
+	color:black;
+	margin-bottom: -5px
+}
+.form_input{
+	padding: 0px 10px
+}
+.button_class{
+	text-align: end;
+	margin-right:10px;
+}
+.table_data_active{
+	background: #2C7BE5;
+	font-size:20px;
+	color:white;
+
+}
+.right_section{
+	margin-top: 25px
+}
+
+.header_input{
+	border-radius: 20px;
+}
+
