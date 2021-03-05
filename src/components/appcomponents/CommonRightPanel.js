@@ -56,17 +56,20 @@ const user = companyData?.userCompanies?.filter(company => company.user_id == lo
           <h6 className="nav-txt-algn-left mn-tp20">Role</h6>
           <p class="nav-txt-algn-left nav-link-text noti-text">{user_roles}</p>
           <h6 className="nav-txt-algn-left mn-tp20">Notification</h6>
-
           <NavItemWithRoundTextCount item={{ name: "Join Request", path: "/JoinNotification", type: 2, count: 0 }}></NavItemWithRoundTextCount>
 
           <h6 className="nav-txt-algn-left mn-tp20">Joined Company</h6>
           <p class="nav-txt-algn-left nav-link-text noti-text">Xyz Company</p>
+          
           <h6 className="nav-txt-algn-left mn-tp20">Role</h6>
           <p class="nav-txt-algn-left nav-link-text noti-text">{user_roles}</p>
-          <h6 className="nav-txt-algn-left mn-tp20">Notification</h6>
 
+          <h6 className="nav-txt-algn-left mn-tp20">Notification</h6>
           <NavItemWithRoundTextCount item={{ name: "Join Request", path: "/JoinNotification", type: 2, count: 0, color: "#334051" }}></NavItemWithRoundTextCount>
           <NavItemWithRoundTextCount item={{ name: "Job Application", path: "/ApplicationNotification", type: 2, count: 0, color: "#334051" }}></NavItemWithRoundTextCount>
+
+
+
 
 
         </CardBody></Card>

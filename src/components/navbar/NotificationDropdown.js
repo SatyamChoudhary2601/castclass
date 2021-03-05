@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Card, Dropdown, DropdownMenu, DropdownToggle } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FalconCardHeader from '../common/FalconCardHeader';
@@ -10,13 +10,17 @@ import classNames from 'classnames';
 import { isIterableArray } from '../../helpers/utils';
 import { rawNewNotifications, rawEarlierNotifications } from '../../data/notification/notification';
 import useFakeFetch from '../../hooks/useFakeFetch';
+import {AllDetailsContext} from '../AllDetailsContext/AllDetailsContext'
 
 const NotificationDropdown = () => {
+  const {userData, setUserData} = useContext(AllDetailsContext)
   // State
   const { data: newNotifications, setData: setNewNotifications } = useFakeFetch(rawNewNotifications);
   const { data: earlierNotifications, setData: setEarlierNotifications } = useFakeFetch(rawEarlierNotifications);
   const [isOpen, setIsOpen] = useState(false);
   const [isAllRead, setIsAllRead] = useState(false);
+  const item = userData?.user?.notifications;
+  console.log(item,"------------this i USER ------------------")
 
   // Handler
   const handleToggle = e => {

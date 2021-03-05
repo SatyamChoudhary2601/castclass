@@ -98,6 +98,8 @@ import CompanyListPage from "../components/apppages/CompanyListPage";
 import CertifierListPage from "../components/apppages/CertifierListPage";
 import CompanyTabs from "../components/apppages/CompanyTabs";
 import CreateCompany from "../components/apppages/CreateCompany";
+import EditCompany from "../components/apppages/EditCompany";
+import DeleteCompany from "../components/apppages/DeleteCompany";
 import CreateRecruitment from "../components/apppages/CreateRecruitment";
 import CreatePrivateCertifier from "../components/apppages/CreatePrivateCertifier";
 
@@ -171,6 +173,8 @@ const DashboardRoutes = ({ id }) => (
     <Route path="/pages/privatecertifier" exact component={CertifierListPage} />
     <Route path="/pages/companytabs" exact component={CompanyTabs} />
     <Route path="/pages/createcompany" exact component={CreateCompany} />
+    <Route path="/pages/edit/:id" exact component={EditCompany} />
+    <Route path="/pages/delete/:id" exact component={DeleteCompany} />
     <Route
       path="/pages/createrecruitment"
       exact

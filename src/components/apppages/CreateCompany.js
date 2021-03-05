@@ -488,91 +488,98 @@ const CreateCompany = () => {
 ]
   let bodyFormData = new FormData();
   const [formData, setFormData] = useState({
-    companyname: "",
+    company_name: "",
     company_username:"",
-    established: "",
-    employees: "",
-    sales: "",
-    market: "",
+    year_established: "",
+    number_of_emp: "",
+    total_annual_sales: "",
+    main_markets: "",
     certifications: "",
     headquarter: "",
-    logo: "",
-    banner: "",
-    location: "",
-    profilevideo: "",
-    business: " ",
-    services: " ",
-    productcertifications: "",
-    industry: "",
-    skills: [],
-    profile: "",
-    verify: "",
-    phone: "",
-    email: "",
-    city: "",
-    state: "",
-    country: "",
-    aboutus: "",
+    company_logo: "",
+    company_banner: "",
+    company_location: "",
+    company_video: "",
+    business_type: " ",
+    products_services: " ",
+    product_certifications: "",
+    company_industry: "",
+    company_skills: "",
+    company_profile: "",
+    company_verified_status: "",
+    company_contactus: "",
+    company_email: "",
+    company_city: "",
+    company_state: "",
+    company_country: "",
+    company_aboutus: "",
+    company_longitude: "Check",
+    company_latitude: "NA",
   });
   const {
-    companyname,
+    company_name,
     company_username,
-    established,
-    employees,
-    sales,
-    market,
+    year_established,
+    number_of_emp,
+    total_annual_sales,
+    main_markets,
     certifications,
     headquarter,
-    logo,
-    banner,
-    location,
-    profilevideo,
-    business,
-    services,
-    productcertifications,
-    industry,
-    skills,
-    profile,
-    verify,
-    phone,
-    email,
-    city,
-    state,
-    country,
-    aboutus,
+    company_logo,
+    company_banner,
+    company_location,
+    company_video,
+    business_type,
+    products_services,
+    product_certifications,
+    company_industry,
+    company_skills,
+    company_profile,
+    company_verified_status,
+    company_contactus,
+    company_email,
+    company_city,
+    company_state,
+    company_country,
+    company_aboutus,
+    company_longitude,
+    company_latitude
   } = formData;
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData, "=================================");
     bodyFormData.append('default_user', localStorage.getItem('default_user'));
-    bodyFormData.append('company_name', companyname);
-    bodyFormData.append('company_email', email);
-    bodyFormData.append('year_established', established);
-    bodyFormData.append('number_of_emp', employees);
-    bodyFormData.append('total_annual_sales', sales);
-    bodyFormData.append('main_markets', market);
+    bodyFormData.append('company_name', company_name);
+    bodyFormData.append('company_email', company_email);
+    bodyFormData.append('year_established', year_established);
+    bodyFormData.append('number_of_emp', number_of_emp);
+    bodyFormData.append('total_annual_sales', total_annual_sales);
+    bodyFormData.append('main_markets', main_markets);
     bodyFormData.append('certifications', certifications);
     bodyFormData.append('headquarter', headquarter);
-    bodyFormData.append('company_location', location);
+    bodyFormData.append('company_location', company_location);
     bodyFormData.append('company_username', company_username);
-    bodyFormData.append('company_logo', logo, logo.name);
-    bodyFormData.append('company_banner', banner, banner.name);
-    bodyFormData.append('company_video', profilevideo);
-    bodyFormData.append('company_industry', industry);
-    bodyFormData.append('company_profile', profile);
-    bodyFormData.append('company_aboutus', aboutus);
-    bodyFormData.append('company_contactus', phone);
-    bodyFormData.append('business_type', business);
-    bodyFormData.append('products_services', services);
-    bodyFormData.append('product_certifications', productcertifications);
-    bodyFormData.append('company_city', city);
-    bodyFormData.append('company_state', state);
-    bodyFormData.append('company_country', country);
-    // bodyFormData.append('skill', skills);
+    bodyFormData.append('company_logo', company_logo);
+    bodyFormData.append('company_banner', company_banner, company_banner.name);
+    bodyFormData.append('company_video', company_video);
+    bodyFormData.append('company_industry', company_industry);
+    bodyFormData.append('company_profile', company_profile);
+    bodyFormData.append('company_aboutus', company_aboutus);
+    bodyFormData.append('company_contactus', company_contactus);
+    bodyFormData.append('business_type', business_type);
+    bodyFormData.append('products_services', products_services);
+    bodyFormData.append('product_certifications', product_certifications);
+    bodyFormData.append('company_city', company_city);
+    bodyFormData.append('company_state', company_state);
+    bodyFormData.append('company_country', company_country);
+    bodyFormData.append('company_verified_status', company_verified_status);
+    bodyFormData.append('company_longitude', company_longitude);
+    bodyFormData.append('company_latitude', company_latitude);
+    bodyFormData.append('company_skills', company_skills);
     
     axios({
     method: 'post',
-    url: 'http://139.59.35.110/castclass/api/v2/companies',
+    url: 'http://139.59.35.110/castclass/api/v2/create_new_company',
     data: bodyFormData,
     headers: {'Content-Type': 'multipart/form-data' }
     })
@@ -591,6 +598,62 @@ const CreateCompany = () => {
         //handle error
         console.log(response);
     });
+
+// let requestOptions = {
+//         default_user: localStorage.getItem('default_user'),
+//         company_name: company_name,
+//         company_email:company_email,
+//         year_established: year_established,
+//         number_of_emp: number_of_emp,
+//         total_annual_sales:total_annual_sales,
+//         main_markets: main_markets,
+//         certifications: certifications,
+//         headquarter: headquarter,
+//         company_location:company_location,
+//         company_username:company_username,
+//         company_logo_image: file,
+//         company_banner_image: file1,
+//         company_video: company_video,
+//         company_industry:company_industry,
+//         company_profile: company_profile,
+//         company_aboutus: company_aboutus,
+//         company_verified_status:company_verified_status,
+//         company_contactus: company_contactus,
+//         business_type: business_type,
+//         products_services:products_services,
+//         product_certifications: product_certifications,
+//         company_city: company_city,
+//         company_state:company_state,
+//         company_country:company_country,
+//         setting_latitude: 'N/A',
+//         setting_longitude: 'Check',
+//         // skill: skill,
+//         recruitement_company: localStorage.getItem('company2'),
+//     };
+//     var formBody = [];
+//     for (var property in requestOptions) {
+//         var encodeKey = encodeURIComponent(property);
+//         var encodedValue = encodeURIComponent(requestOptions[property]);
+//         formBody.push(encodeKey + "=" + encodedValue);
+//     }
+//     formBody = formBody.join("&");
+//     fetch('http://139.59.35.110/castclass/api/v2/companies', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded'
+//         },
+//         body: formBody
+//     }).then(res => {
+//       console.log(res)
+//       if(res.status === 200){
+
+//         setModalOpen(true)
+  
+
+//   }
+//     })
+//       .catch(err => console.log(err))
+
   };
   const onChangeHandler = (e) => {
     setFormData({
@@ -599,17 +662,28 @@ const CreateCompany = () => {
     });
   };
 
-  const onChangeHandlerFile = e => {
-    setFormData({
-      ...formData,
-      logo: e.target.files[0]
-    })
-  }
+  // const onChangeHandlerFile = e => {
+  //   setFormData({
+  //     ...formData,
+  //     company_logo: e.target.files[0]
+  //   })
+  // }
+  const handleFile = (e) => {
+  const content = e.target.result;
+  setFormData({...formData, company_logo:e.target.result})
+  console.log('file content',  content)
+  // You can set content in state and show it in render.
+}
+ const handleChangeFile = (file) => {
+  let fileData = new FileReader();
+  fileData.onloadend = handleFile;
+  fileData.readAsText(file);
+}
 
   const onChangeHandlerFileBanner = e => {
     setFormData({
       ...formData,
-      banner:e.target.files[0]
+      company_banner:e.target.files[0]
     })
   }
    const closeModal = () => {
@@ -647,8 +721,8 @@ const CreateCompany = () => {
               <Input
                 type="text"
                 placeholder="Company Name"
-                name="companyname"
-                value={companyname}
+                name="company_name"
+                value={company_name}
                 required
                 onChange={(e) => onChangeHandler(e)}
               />
@@ -661,7 +735,7 @@ const CreateCompany = () => {
                 type="text"
                 placeholder="Company Username"
                 name="company_username"
-                value={companyname}
+                value={company_name}
                 disabled
                 required
                 onChange={(e) => onChangeHandler(e)}
@@ -669,7 +743,7 @@ const CreateCompany = () => {
             </FormGroup>
 
             <FormGroup>
-              <Label>Company Url : {companyname}.castclass.com</Label>
+              <Label>Company Url : {company_name.replace(/\s+/g, '').toLowerCase()}.castclass.com</Label>
             </FormGroup>
 
             <FormGroup className="required">
@@ -678,8 +752,8 @@ const CreateCompany = () => {
               <Input
                 type="text"
                 placeholder="Year Established"
-                name="established"
-                value={established}
+                name="year_established"
+                value={year_established}
                 required
                 onChange={(e) => onChangeHandler(e)}
               />
@@ -690,8 +764,8 @@ const CreateCompany = () => {
 
               <Input
                 type="select"
-                name="employees"
-                value={employees}
+                name="number_of_emp"
+                value={number_of_emp}
                 required
                 onChange={(e) => onChangeHandler(e)}
               >
@@ -709,8 +783,8 @@ const CreateCompany = () => {
               <Input
                 type="text"
                 placeholder="Total Annual Sales Volume"
-                name="sales"
-                value={sales}
+                name="total_annual_sales"
+                value={total_annual_sales}
                 onChange={(e) => onChangeHandler(e)}
               />
             </FormGroup>
@@ -721,8 +795,8 @@ const CreateCompany = () => {
               <Input
                 type="text"
                 placeholder="Main Markets"
-                name="market"
-                value={market}
+                name="main_markets"
+                value={main_markets}
                 required
                 onChange={(e) => onChangeHandler(e)}
               />
@@ -760,8 +834,8 @@ const CreateCompany = () => {
               <Input
                 type="text"
                 placeholder="Location"
-                name="location"
-                value={location}
+                name="company_location"
+                value={company_location}
                 required
                 onChange={(e) => onChangeHandler(e)}
               />
@@ -772,8 +846,8 @@ const CreateCompany = () => {
               <Input
                 type="number"
                 placeholder="Phone"
-                name="phone"
-                value={phone}
+                name="company_contactus"
+                value={company_contactus}
                 required
                 onChange={(e) => onChangeHandler(e)}
               />
@@ -784,8 +858,8 @@ const CreateCompany = () => {
               <Input
                 type="text"
                 placeholder="Email"
-                name="email"
-                value={email}
+                name="company_email"
+                value={company_email}
                 required
                 onChange={(e) => onChangeHandler(e)}
               />
@@ -794,17 +868,17 @@ const CreateCompany = () => {
               <Label>Company Logo</Label>
               <Input
                 type="file"
-                name="logo"
+                name="company_logo"
                 // value={logo}
                 required
-                onChange={(e) => onChangeHandlerFile(e)}
+                onChange={(e) => handleChangeFile(e.target.files[0])}
               />
             </FormGroup>
             <FormGroup className="required">
               <Label>Company Banner</Label>
               <Input
                 type="file"
-                name="banner"
+                name="company_banner"
                 // value={banner}
                 required
                 onChange={(e) => onChangeHandlerFileBanner(e)}
@@ -817,8 +891,8 @@ const CreateCompany = () => {
               <Input
                 type="text"
                 placeholder="Note: Enter valid youtube url"
-                name="profilevideo"
-                value={profilevideo}
+                name="company_video"
+                value={company_video}
                 onChange={(e) => onChangeHandler(e)}
               />
             </FormGroup>
@@ -828,8 +902,8 @@ const CreateCompany = () => {
               <Input
                 type="text"
                 placeholder="Business Type"
-                name="business"
-                value={business}
+                name="business_type"
+                value={business_type}
                 onChange={(e) => onChangeHandler(e)}
               />
             </FormGroup>
@@ -839,8 +913,8 @@ const CreateCompany = () => {
               <Input
                 type="text"
                 placeholder="Products Services"
-                name="services"
-                value={services}
+                name="products_services"
+                value={products_services}
                 onChange={(e) => onChangeHandler(e)}
               />
             </FormGroup>
@@ -851,8 +925,8 @@ const CreateCompany = () => {
               <Input
                 type="text"
                 placeholder="Product Certifications"
-                name="productcertifications"
-                value={productcertifications}
+                name="product_certifications"
+                value={product_certifications}
                 onChange={(e) => onChangeHandler(e)}
               />
             </FormGroup>
@@ -861,8 +935,8 @@ const CreateCompany = () => {
 
               <Input
                 type="select"
-                name="industry"
-                value={industry}
+                name="company_industry"
+                value={company_industry}
                 required
                 onChange={(e) => onChangeHandler(e)}
               >
@@ -880,8 +954,8 @@ const CreateCompany = () => {
               <Input
                 type="text"
                 placeholder=""
-                name="skills"
-                value={skills}
+                name="company_skills"
+                value={company_skills}
                 onChange={(e) => onChangeHandler(e)}
               />
             </FormGroup>
@@ -892,8 +966,8 @@ const CreateCompany = () => {
               <Input
                 type="text"
                 placeholder="Company City"
-                name="city"
-                value={city}
+                name="company_city"
+                value={company_city}
                 onChange={(e) => onChangeHandler(e)}
               />
             </FormGroup>
@@ -903,8 +977,8 @@ const CreateCompany = () => {
               <Input
                 type="text"
                 placeholder="Company State"
-                name="state"
-                value={state}
+                name="company_state"
+                value={company_state}
                 onChange={(e) => onChangeHandler(e)}
               />
             </FormGroup>
@@ -915,8 +989,8 @@ const CreateCompany = () => {
               <Input
                 type="text"
                 placeholder="Company Country"
-                name="country"
-                value={country}
+                name="company_country"
+                value={company_country}
                 onChange={(e) => onChangeHandler(e)}
               />
             </FormGroup>
@@ -926,8 +1000,8 @@ const CreateCompany = () => {
 
               <Input
                 type="textarea"
-                name="profile"
-                value={profile}
+                name="company_profile"
+                value={company_profile}
                 required
                 onChange={(e) => onChangeHandler(e)}
               />
@@ -937,8 +1011,8 @@ const CreateCompany = () => {
 
               <Input
                 type="textarea"
-                name="aboutus"
-                value={aboutus}
+                name="company_aboutus"
+                value={company_aboutus}
                 onChange={(e) => onChangeHandler(e)}
               />
             </FormGroup>
@@ -948,8 +1022,8 @@ const CreateCompany = () => {
 
               <Input
                 type="select"
-                name="verify"
-                value={verify}
+                name="company_verified_status"
+                value={company_verified_status}
                 required
                 onChange={(e) => onChangeHandler(e)}
               >

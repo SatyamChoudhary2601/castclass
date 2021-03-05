@@ -1,0 +1,9 @@
+.notification_bell{
+	width: 25px;
+	cursor: pointer;
+}
+
+.notification_bell:hover{
+	/*background-image: url('../../assets/img/myicons/notificationHover.svg');*/
+	color: green
+}

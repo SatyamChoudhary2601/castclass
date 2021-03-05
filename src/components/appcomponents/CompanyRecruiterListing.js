@@ -8,7 +8,9 @@ import {
   Form,
   Input,
   Row,
+  Button
 } from "reactstrap";
+import {useHistory} from 'react-router-dom'
 import FalconCardHeader from "../common/FalconCardHeader";
 import Loader from "../common/Loader";
 import { isIterableArray } from "../../helpers/utils";
@@ -17,36 +19,99 @@ import delet from "../../assets/img/myicons/delete.svg";
 import company from "../../assets/img/myicons/work.svg";
 import useGetFetch from "../../hooks/useGetFetch";
 import { Link } from "react-router-dom";
+import axios from 'axios'
+import Modal from 'react-awesome-modal';
+
 
 const PageComponent = ({ api, title, setTotalPage, limit }) => {
   const { loading, data: listItems } = useGetFetch(api);
+  const [isModalOpen, setModalOpen] = useState(false)
+  const [deleteItem, setDeleteItem] = useState(false)
+  const [deleteID, setDeleteID] = useState(null)
+
   // debugger;
   console.log("recvd api val= " + api);
 
   let userId = localStorage.getItem("user_id");
   let listData = listItems?.result?.data;
-  console.log(listData, "----------------------------");
+  console.log(listData, "-------------listData---------------");
+  const history = useHistory();
 
   useEffect(() => {
     setTotalPage(Math.floor(listItems?.result?.total_results / limit) + 1);
     // debugger;
     console.log("recvd api val= " + api);
-  }, [listItems, api]);
+    if(deleteItem == true){
+      history.push('/pages/company')
+    }
+  }, [listItems, api,deleteItem]);
+
+  let bodyFormData = new FormData();
+
+  const deleteCompany = (id) => {
+    setModalOpen(true)
+setDeleteID(id)
+   
+
+  
+  }
+
+const yesDelete = () => {
+  setDeleteItem(true)
+          bodyFormData.append('default_user', localStorage.getItem('default_user'));
+    bodyFormData.append('company_id', deleteID);
+
+    axios({
+    method: 'post',
+    url: 'http://139.59.35.110/castclass/api/v2/companies/delete',
+    data: bodyFormData,
+    headers: {'Content-Type': 'multipart/form-data' }
+    })
+    .then(function (response) {
+
+        
+if(response?.data == "success"){
+ window.location.reload()
+  // closeModal()
+}
+
+  
+
+  
+    })
+    .catch(function (response) {
+        //handle error
+        console.log(response);
+    });
+
+ 
+
+}
+
+  const closeModal = () => {
+        setModalOpen(false)
+    }
+
 
   return (
     <>
+    <Modal visible={isModalOpen} width="600" height="350" effect="fadeInUp" onClickAway={() =>closeModal()}>
+        <div style={{textAlign:"center"}}>
+            <img src="https://images.vexels.com/media/users/3/128917/isolated/preview/3fa111197f6aee0add60c05829d0f196-exclamation-point-icon-by-vexels.png" width="100px" style={{marginTop:'40px',marginBottom:'20px', textAlign:'center'}}/>
+
+            <h1 style={{textAlign:'center'}}>Are you sure?</h1>
+            <p style={{textAlign:'center'}}>You won't be able to revert this!</p>
+            <Button style={{marginTop:'10px', marginRight:'10px'}} color="primary" size="lg" onClick={() => yesDelete()}>Yes, delete it!</Button>
+            <Button style={{marginTop:'10px'}} color="danger" size="lg" onClick={() => closeModal()}>Cancel</Button>
+        </div>
+    </Modal>
       {" "}
       {loading ? (
         <Loader />
       ) : isIterableArray(listData) ? (
         listData.map((listItem, index) => {
           return (
-            <Link to={{
-              pathname:`/page/${listItem.id}`,
-              state:{
-                data:listItem
-              }
-            } } >
+           
               <div className="media mn-tp30 pd-bt30 border-bottom-list">
                 <div className="media-left">
                   <img
@@ -63,24 +128,43 @@ const PageComponent = ({ api, title, setTotalPage, limit }) => {
                 </div>
                 <div className="media-body pd-lt20">
                   <h5 className="media-heading field">
-                    <Link className="reverse" to={`/page/${listItem.id}`}>
+                    <Link className="reverse" to={{
+              pathname:`/page/${listItem.id}`,
+              state:{
+                data:listItem
+              }
+            } } >
                       {listItem?.company_name}
                     </Link>
                     {listItem?.user_id == userId && (
                       <Fragment>
                         {" "}
+                        <Link to={{
+                          pathname:`/pages/edit/${listItem.id}`,
+                          state:{
+                            itemData:listItem
+                          }
+                        }}>
+                        
                         <img
                           width="20"
                           className="va-bm mn-lt20"
                           src={edit}
-                          title="Remove"
+                          title="edit"
                         />
+                        </Link>
+                        <span
+                          onClick={e => deleteCompany(listItem.id)}
+
+                        >
                         <img
                           width="20"
                           className="va-bm mn-lt20"
                           src={delet}
-                          title="d"
+                          title="delete"
+                          onClick={e => deleteCompany(listItem.id)}
                         />
+                        </span>
                       </Fragment>
                     )}
                   </h5>
@@ -103,8 +187,7 @@ const PageComponent = ({ api, title, setTotalPage, limit }) => {
                   </div>
                 </div>
               </div>
-            </Link>
-          );
+                   );
         })
       ) : (
         <Row className="p-card">

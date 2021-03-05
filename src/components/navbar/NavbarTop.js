@@ -9,6 +9,10 @@ import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { faBuilding,faQuestion } from "@fortawesome/free-solid-svg-icons";
 import recruiticon from '../../assets/img/myicons/hiring.svg';
+import notification from '../../assets/img/myicons/notification.svg';
+import './NavbarTop.css'
+
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -55,9 +59,8 @@ const NavbarTop = () => {
 
           <Link to="/"><h6 className="mn10">Jobs</h6></Link>
           <Link to="/pages/billing"><h6 className="mn10 clr-red"><u >try Premium</u></h6></Link>
-
           {/* </NavItem> */}
-          {/* <NotificationDropdown /> */}
+          <NotificationDropdown /> 
         </Nav>
       </Collapse>
     </Navbar>
